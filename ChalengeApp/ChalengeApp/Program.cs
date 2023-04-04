@@ -1,31 +1,56 @@
-﻿using ChalengeApp;
+﻿// 1.Stwórz klasę Employee, w której przechowasz Imię, Nazwisko,
+// wiek, oraz punkty pracownika w postaci liczb całkowitych.
+//2. Stwórz 3 pracowników i każdemu przypisz po 5 ocen z zakresu 1 do 10.
+//3.  Napisz program ,który wyszuka pracownika z najwyższą liczbą ocen ,
+// a następnie wyświetli jego dane oraz wynik.
 
-namespace Klasy;
+using ChalengeApp;
 
-class Program
+//ZADANIE DZIEŃ 6
+internal class Program
 {
-    static void Main()
+    private static void Main(string[] args)
     {
-        Latarka latarka = new Latarka();
-        Console.WriteLine($"Czy latarka jest włączona? {latarka.Wlaczona}");
-        Console.WriteLine($"Jakiego koloru jest latarka? {latarka.Kolor}");
-        Console.WriteLine();
+        Employee user1 = new Employee("Michał", "Durkiewicz", 33);
+        Employee user2 = new Employee("Ewelina", "Kobińska", 45);
+        Employee user3 = new Employee("Marcin", "Robakiewicz", 29);
 
-        latarka.Wlacz();
-        latarka.Kolor = "czerwony";
+        List<Employee> users = new List<Employee>()
+        {
+            user1, user2, user3
+        };
 
-        Console.WriteLine($"Czy latarka jest włączona? {latarka.Wlaczona}");
-        Console.WriteLine($"Jakiego koloru jest latarka? {latarka.Kolor}");
-        Console.WriteLine();
+        user1.AddScore(9);
+        user1.AddScore(9);
+        user1.AddScore(3);
+        user1.AddScore(5);
+        user1.AddScore(6);
 
-        latarka.Wylacz();
-        latarka.Kolor = "niebieski";
+        user2.AddScore(3);
+        user2.AddScore(10);
+        user2.AddScore(3);
+        user2.AddScore(2);
+        user2.AddScore(7);
 
-        Console.WriteLine($"Czy latarka jest włączona? {latarka.Wlaczona}");
-        Console.WriteLine($"Jakiego koloru jest latarka? {latarka.Kolor}");
-        Console.WriteLine();
+        user3.AddScore(10);
+        user3.AddScore(4);
+        user3.AddScore(4);
+        user3.AddScore(5);
+        user3.AddScore(6);
+
+        int maxRes = -1;
+        Employee userMaxPoint = null;
+        foreach (var user in users)
+        {
+            if (user.Result > maxRes)
+                userMaxPoint = user;
+        }
+
+        Console.WriteLine($"Pracownik z maksymalną liczbą punktów to:  {userMaxPoint.Name} {userMaxPoint.Surname}. Ma {userMaxPoint.Age} lat.");
+        Console.WriteLine($"{userMaxPoint.Name} zdobył liczbę punktów: {userMaxPoint.Result}");
+        Console.WriteLine("GRATULACJE!!!");
+        Console.WriteLine($"{ user1.Name} zdobył: {user1.Result}");
+        Console.WriteLine($"{ user2.Name} zdobył: {user2.Result}");
+        Console.WriteLine($"{ user3.Name} zdobył: {user3.Result}");
     }
 }
-
-
-
